@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "2.1.10"
+    alias(core.plugins.kotlin)
 }
 
 group = "arc.graffiti"
@@ -10,7 +10,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.minestom:minestom-snapshots:1_21_4-44b34717ed")
+    implementation(core.minestom)
 }
 
 allprojects {
@@ -22,9 +22,6 @@ allprojects {
     }
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
     jvmToolchain(23)
 }

@@ -1,0 +1,9 @@
+[versions]
+kotlin = "2.1.10"
+minestom = "1_21_4-44b34717ed"
+
+[libraries]
+minestom = { group = "net.minestom", name = "minestom-snapshots", version.ref = "minestom" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

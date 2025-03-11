@@ -3,6 +3,9 @@ dependencyResolutionManagement {
         create("server") {
             from(files("${rootDir}/gradle/server.versions.toml"))
         }
+        create("core") {
+            from(files("${rootDir}/gradle/core.versions.toml"))
+        }
     }
 }
 
