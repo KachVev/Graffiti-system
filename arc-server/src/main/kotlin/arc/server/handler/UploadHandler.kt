@@ -1,15 +1,13 @@
 package arc.server.handler
 
-import arc.server.server.ResourcePackService
-import io.ktor.http.HttpStatusCode
-import io.ktor.http.content.PartData
-import io.ktor.http.content.forEachPart
-import io.ktor.server.application.ApplicationCall
-import io.ktor.server.plugins.origin
-import io.ktor.server.request.receiveMultipart
-import io.ktor.server.response.respond
-import io.ktor.server.routing.Route
-import io.ktor.server.routing.post
+import arc.server.service.ResourcePackService
+import io.ktor.http.*
+import io.ktor.http.content.*
+import io.ktor.server.application.*
+import io.ktor.server.plugins.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.server.routing.*
 
 class UploadHandler(
     val resourcePackService: ResourcePackService,
@@ -28,8 +26,13 @@ class UploadHandler(
             return
         }
 
+        val key = call.parameters["key"]
+        if (key == null) {
+            call.respond(HttpStatusCode.Forbidden, "Invalid or missing upload key")
+            return
+        }
 
-        val savedFile = processUploadedFile(call)
+        val savedFile = processUploadedFile(call, key)
 
         if (savedFile) {
             call.respond(HttpStatusCode.Companion.OK, "Resourcepack uploaded successfully")
@@ -38,7 +41,7 @@ class UploadHandler(
         }
     }
 
-    suspend fun processUploadedFile(call: ApplicationCall): Boolean {
+    suspend fun processUploadedFile(call: ApplicationCall, key: String): Boolean {
         val multipart = call.receiveMultipart()
         var isSaved = false
 
@@ -46,7 +49,7 @@ class UploadHandler(
             try {
                 if (part is PartData.FileItem) {
                     println("Processing file: ${part.originalFileName}")
-                    resourcePackService.saveResourcePack(part)
+                    resourcePackService.saveResourcePack(key, part)
                     isSaved = true
                     println("Received file: ${part.originalFileName}")
                 }

@@ -2,7 +2,7 @@ package arc.server
 
 import arc.server.handler.DownloadHandler
 import arc.server.handler.UploadHandler
-import arc.server.server.ResourcePackService
+import arc.server.service.ResourcePackService
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
 import io.ktor.server.engine.*
@@ -11,16 +11,15 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.routing.*
 import java.io.File
 
-val resourcePackFile = File("uploads/resourcepack.zip").apply {
-    parentFile.mkdirs()
-}
+val directory = File("/resourcepacks")
+
 fun Application.setup() {
     install(ContentNegotiation) {
         json()
     }
 
     val allowedIps = listOf("0:0:0:0:0:0:0:1", "127.0.0.1", "85.254.73.222")
-    val resourcePackService = ResourcePackService(resourcePackFile)
+    val resourcePackService = ResourcePackService(directory)
 
     routing {
         UploadHandler(resourcePackService, allowedIps).apply { uploadRoute() }
