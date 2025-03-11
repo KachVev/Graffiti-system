@@ -31,4 +31,6 @@ class DownloadHandler(val resourcePackService: ResourcePackService) {
         )
         call.respondFile(resourcePackService.getResourcePack(key))
     }
+
+
 }

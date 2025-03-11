@@ -2,6 +2,8 @@ package arc.graffiti
 
 import arc.graffiti.api.ChunkManager
 import arc.graffiti.models.Location
+import arc.graffiti.resourcepack.ResourcePackProvider
+import kotlinx.coroutines.runBlocking
 import net.minestom.server.MinecraftServer
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent
@@ -18,11 +20,16 @@ fun main() {
         Graffiti("graffiti1"),
     )
 
+    val resourcePackProvider = ResourcePackProvider("http://localhost:8080", "graffiti")
+
     MinecraftServer.getGlobalEventHandler().apply {
         addListener(AsyncPlayerConfigurationEvent::class.java) { event ->
             with(event) {
                 spawningInstance = worldInstance
                 player.respawnPoint = Pos(1.0, 42.0, 0.0)
+                runBlocking {
+                    resourcePackProvider.sendResourcePack(player)
+                }
             }
         }
         addListener(PlayerUseItemOnBlockEvent::class.java) { _ ->

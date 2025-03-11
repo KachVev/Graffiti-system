@@ -11,6 +11,10 @@ repositories {
 
 dependencies {
     implementation(core.minestom)
+    implementation(core.ktor.core)
+    implementation(core.ktor.serialization)
+    implementation(core.ktor.content)
+    implementation(core.ktor.okhttp)
 }
 
 allprojects {
