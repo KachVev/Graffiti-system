@@ -12,6 +12,8 @@ import net.minestom.server.item.ItemStack
 import net.minestom.server.item.Material
 import net.minestom.server.utils.Direction
 
+@Suppress("unused")
+@Deprecated("Use Graffiti instead")
 class GraffitiHandler(val worldInstance: Instance) {
     val blockFaceToDirection = mapOf(
         BlockFace.NORTH to Direction.NORTH,
@@ -36,7 +38,6 @@ class GraffitiHandler(val worldInstance: Instance) {
 
     fun handle(event: PlayerUseItemOnBlockEvent) {
         val player = event.player
-        if (player.itemInMainHand.material() != Material.STICK) return
 
         val targetBlock = event.position
         val hitDirection = blockFaceToDirection[event.blockFace] ?: return

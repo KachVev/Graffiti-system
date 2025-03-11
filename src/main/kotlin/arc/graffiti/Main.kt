@@ -1,6 +1,7 @@
 package arc.graffiti
 
 import arc.graffiti.api.ChunkManager
+import arc.graffiti.models.Location
 import net.minestom.server.MinecraftServer
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.player.AsyncPlayerConfigurationEvent
@@ -13,8 +14,9 @@ fun main() {
     val chunkGenerator = ChunkManager(instanceManager)
     chunkGenerator.create()
     val worldInstance = chunkGenerator.container
-
-    val graffiti = GraffitiHandler(worldInstance)
+    val grafities = listOf(
+        Graffiti("graffiti1"),
+    )
 
     MinecraftServer.getGlobalEventHandler().apply {
         addListener(AsyncPlayerConfigurationEvent::class.java) { event ->
@@ -23,8 +25,8 @@ fun main() {
                 player.respawnPoint = Pos(1.0, 42.0, 0.0)
             }
         }
-        addListener(PlayerUseItemOnBlockEvent::class.java) { event ->
-            graffiti.handle(event)
+        addListener(PlayerUseItemOnBlockEvent::class.java) { _ ->
+            grafities.first().spawn(Location(worldInstance, 1.0, 42.0, 0.0))
         }
     }
 
