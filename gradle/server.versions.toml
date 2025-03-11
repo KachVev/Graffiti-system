@@ -1,7 +1,7 @@
 [versions]
 ktor = "3.1.1"
 kotlin-serialization = "2.1.10"
-kotlinx-serialization = "1.5.0" # Версию можно изменить под ваши нужды
+kotlinx-serialization = "1.8.0"
 
 [libraries]
 ktor-server-core = { group = "io.ktor", name = "ktor-server-core", version.ref = "ktor" }
@@ -16,3 +16,4 @@ kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-seria
 
 [plugins]
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-serialization" }
+shadow = { id = "com.github.johnrengelman.shadow", version = "8.1.1" }

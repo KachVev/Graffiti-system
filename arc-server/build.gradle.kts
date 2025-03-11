@@ -1,7 +1,7 @@
 plugins {
     alias(server.plugins.serialization)
+    alias(server.plugins.shadow)
     application
-    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 
@@ -11,7 +11,6 @@ dependencies {
     implementation(server.ktor.server.request.validation)
     implementation(server.ktor.server.content.negotiation)
     implementation(server.ktor.server.cio)
-    implementation(server.ktor.server.call.logging)
     implementation(server.ktor.serialization.kotlinx.json)
     implementation(server.ktor.serialization.jackson)
     implementation(server.kotlinx.serialization)
