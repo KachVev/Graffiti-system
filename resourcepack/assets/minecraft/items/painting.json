@@ -1,0 +1,19 @@
+{
+  "model": {
+    "type": "select",
+    "property": "custom_model_data",
+    "fallback": {
+      "type": "model",
+      "model": "item/painting"
+    },
+    "cases": [
+      {
+        "when": "graffiti1",
+        "model": {
+          "type": "model",
+          "model": "item/graffiti"
+        }
+      }
+    ]
+  }
+}
