@@ -16,7 +16,8 @@ fun main() {
     val chunkGenerator = ChunkManager(instanceManager)
     chunkGenerator.create()
     val worldInstance = chunkGenerator.container
-    val spawner = GraffitiSpawner()
+    val rotationHandler = RotationHandler()
+    val spawner = GraffitiSpawner(worldInstance, rotationHandler)
 
     val resourcePackProvider = ResourcePackProvider("http://localhost:8080", "graffiti")
 
