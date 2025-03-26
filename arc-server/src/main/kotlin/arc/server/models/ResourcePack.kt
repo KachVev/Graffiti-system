@@ -1,4 +1,4 @@
-package arc.server.models
+package arc.server.model
 
 import java.io.File
 
