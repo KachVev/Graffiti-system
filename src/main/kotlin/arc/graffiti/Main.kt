@@ -16,9 +16,7 @@ fun main() {
     val chunkGenerator = ChunkManager(instanceManager)
     chunkGenerator.create()
     val worldInstance = chunkGenerator.container
-    val grafities = listOf(
-        Graffiti("graffiti1"),
-    )
+    val spawner = GraffitiSpawner()
 
     val resourcePackProvider = ResourcePackProvider("http://localhost:8080", "graffiti")
 
@@ -32,8 +30,8 @@ fun main() {
                 }
             }
         }
-        addListener(PlayerUseItemOnBlockEvent::class.java) { _ ->
-            grafities.first().spawn(Location(worldInstance, 1.0, 42.0, 0.0))
+        addListener(PlayerUseItemOnBlockEvent::class.java) { event ->
+           spawner.handle(event)
         }
     }
 

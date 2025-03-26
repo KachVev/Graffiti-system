@@ -1,4 +1,4 @@
-package arc.graffiti.models
+package arc.graffiti.model
 
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.instance.Instance

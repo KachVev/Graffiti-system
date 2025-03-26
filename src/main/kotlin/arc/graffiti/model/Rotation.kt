@@ -1,4 +1,4 @@
-package arc.graffiti.models
+package arc.graffiti.model
 
 data class Rotation(
     val yaw: Float = 0f,

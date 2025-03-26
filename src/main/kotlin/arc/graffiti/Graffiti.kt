@@ -10,6 +10,7 @@ import net.minestom.server.item.Material
 
 @Suppress("unused")
 class Graffiti(val modelData: String) {
+
     val entity: Entity = Entity(EntityType.ITEM_DISPLAY).apply {
         val displayMeta = entityMeta as ItemDisplayMeta
         displayMeta.itemStack = ItemStack.of(Material.PAINTING).withCustomModelData(
