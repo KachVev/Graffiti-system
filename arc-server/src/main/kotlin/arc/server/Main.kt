@@ -18,7 +18,7 @@ fun Application.setup() {
         json()
     }
 
-    val allowedIps = listOf("0:0:0:0:0:0:0:1", "127.0.0.1", "85.254.73.222")
+    val allowedIps = listOf("0:0:0:0:0:0:0:1", "127.0.0.1")
     val resourcePackService = ResourcePackService(directory)
 
     routing {
